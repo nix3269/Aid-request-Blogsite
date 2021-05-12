@@ -143,12 +143,13 @@ input[type="checkbox"] {
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    width: 300px;
     border: 1px solid black;
-    margin: auto;
     text-align: center;
     font-family: arial;
     margin: 60px;
+    padding: 30px;
+    height: 400px;
 }
 
 .qty {
@@ -191,9 +192,16 @@ input[type="checkbox"] {
     color: white;
 }
 
+.butyn {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
 .card h1 {
     background-color: #4CAF50;
-    padding: 20px;
+    padding: 15px;
     color: white;
 }
 
@@ -270,6 +278,7 @@ input[type="checkbox"] {
     }
     .card {
         margin: 40px;
+        height: 430px;
     }
 }
 
@@ -380,5 +389,23 @@ input[type=submit] {
     .footer1 {
         position: absolute;
         bottom: 0px;
+    }
+}
+
+@media(width: 320px) {
+    .card {
+        height: 480px;
+    }
+}
+
+@media(width: 360px) {
+    .card {
+        height: 420px;
+    }
+}
+
+@media(width: 375px) {
+    .card {
+        height: 500px;
     }
 }

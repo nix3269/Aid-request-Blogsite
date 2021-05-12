@@ -163,7 +163,6 @@ app.post('/signup', async (request, response) => {
         if(x.length<8){
             response.render('signup', { message3: "*Password should be 8 or more characters" });
         }else if(y.length!=10){ 
-            console.log("jnjknknjknjknkjnjknk")
             response.render('signup', { message4: "*Invalid Phone Number" });
         }else{
             const firestore_con = await admin.firestore();

@@ -1,74 +1,93 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/style1.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
+    <script>
+        $(document).ready(function(){
+            verify()
+        })
+        function verify() {
+            var pass1 = document.getElementById("pass1")
+            var pass2 = document.getElementById("pass2")
+            if (pass1.value != pass2.value) {
+                $("#psmatch").css("display","block");
+                $('#butn').attr('type','button');
+                $("#butn").css('background','#78CF7C')
+            } else {
+                $("#psmatch").css('display','none');
+                $('#butn').attr('type','submit');
+                $("#butn").css('background','#4CAF50')
+            }
+        }
+    </script>
+
+</head>
 
 <body>
-<nav id="navlog">
- <div class="logo1">CEFG</div>
-</nav>
-<script>
-    x={{message}}
-</script>
-<div class="hmm1">
-<h1 class="logh">Sign Up</h1>
-<form action="/signup" method="post">
-  <div class="row">
-    <label for="Name">Name</label>
-    <input type="name" name="name" autocomplete="off" placeholder="Your full name">
-  </div>
-  <div class="row">
-    <label for="email">Email</label>
-    <input type="email" name="email" autocomplete="off" placeholder="email">
-    {{#if message2}}
-    <p style="margin-top:-13px; color: red; font-size: 10px">{{message2}}<p></p>
-    {{/if}}
-  </div>
-  <div class="row">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="pass1" placeholder="password">
-     {{#if message3}}
-    <p style="margin-top:-13px; color: red; font-size: 10px">{{message3}}<p></p>
-    {{/if}}
-  </div>
-   <div class="row">
-    <label for="password">Re-type Password</label>
-    <input type="password" id="pass2" placeholder="password">
-    <p style="margin-top:-13px; color: red; font-size: 10px;display:none">{{message4}}<p></p>
-  </div>
-  <div class="row">
-    <label for="number">Contact Number</label>
-    <input type="number" name="phone" placeholder="number">
-     {{#if message4}}
-    <p style="margin-top:-13px; color: red; font-size: 10px">{{message4}}<p></p>
-    {{/if}}
-  </div>
-   <label for="location">Your Location</label>
-  <div class="location">
-  <select id="item1" name="location">
-    <option value="Canacona">Canacona</option>
-            <option value="Bardez">Bardez</option>
-            <option value="Bicholim">Bicholim</option>
-            <option value="Mormugao">Mormugao</option>
-            <option value="Pernem">Pernem</option>
-            <option value="Ponda">Ponda</option>
-            <option value="Quepem">Quepem</option>
-            <option value="Salcete">Salcete</option>
-            <option value="Sanguem">Sanguem</option>
-            <option value="Sateri">Sateri</option>
-            <option value="Tiswadi">Tiswadi</option>
-  </select>
-</div>
+    <nav id="navlog">
+        <div class="logo1">CEFG</div>
+    </nav>
+    <div class="hmm1">
+        <h1 class="logh">Sign Up</h1>
+        <form action="/signup" method="post">
+            <div class="row">
+                <label for="Name">Name</label>
+                <input type="name" name="name" autocomplete="off" placeholder="Your full name">
+            </div>
+            <div class="row">
+                <label for="email">Email</label>
+                <input type="email" name="email" autocomplete="off" placeholder="email">
+                {{#if message2}}
+                <p style="margin-top:-13px; color: red; font-size: 10px">{{message2}}<p></p>
+                    {{/if}}
+            </div>
+            <div class="row">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="pass1" placeholder="password">
+                {{#if message3}}
+                <p style="margin-top:-13px; color: red; font-size: 10px">{{message3}}<p></p>
+                    {{/if}}
+            </div>
+            <div class="row">
+                <label for="password">Re-type Password</label>
+                <input oninput="verify()" type="password" id="pass2" placeholder="password">
+                <p id="psmatch" style="margin-top:-13px; color: red; font-size: 10px;display:none">*Passwords do not match</p>
+            </div>
+            <div class="row">
+                <label for="number">Contact Number</label>
+                <input type="number" name="phone" placeholder="number">
+                {{#if message4}}
+                <p style="margin-top:-13px; color: red; font-size: 10px">{{message4}}<p></p>
+                    {{/if}}
+            </div>
+            <label for="location">Your Location</label>
+            <div class="location">
+                <select id="item1" name="location">
+                    <option value="Canacona">Canacona</option>
+                    <option value="Bardez">Bardez</option>
+                    <option value="Bicholim">Bicholim</option>
+                    <option value="Mormugao">Mormugao</option>
+                    <option value="Pernem">Pernem</option>
+                    <option value="Ponda">Ponda</option>
+                    <option value="Quepem">Quepem</option>
+                    <option value="Salcete">Salcete</option>
+                    <option value="Sanguem">Sanguem</option>
+                    <option value="Sateri">Sateri</option>
+                    <option value="Tiswadi">Tiswadi</option>
+                </select>
+            </div>
 
- <button id="butn" >Sign Up</button>
-</form>
-<a href="/">Already user? Log in now!</a>
-</div>
-        <section class="footer1">
-      <h1>©CEFG All rights reserved.</h1>
+            <button id="butn">Sign Up</button>
+        </form>
+        <a href="/">Already user? Log in now!</a>
+    </div>
+    <section class="footer1">
+        <h1>©CEFG All rights reserved.</h1>
     </section>
 </body>
+
 </html>

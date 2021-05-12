@@ -10,6 +10,14 @@
             $('#ide').val(sessionStorage.getItem("id"));
             $('#link').attr('href',"/load?location="+sessionStorage.getItem("curr"))
         })
+        function verifyphone(){
+            if($("#phone2").val().length != 10){
+
+            }
+            if($("#phone1").val().length != 10){
+                
+            }
+        }
     </script>
 </head>
 <body>
@@ -67,7 +75,7 @@
                         <label for="lname">Contact Number 1:</label>
                     </div>
                     <div class="col-75">
-                        <input type="number" id="lname" name="phone1" placeholder="Input contact number 1">
+                        <input type="number" id="phone1" name="phone1" placeholder="Input contact number 1">
                     </div>
                 </div>
                 <div class="row">
@@ -75,7 +83,7 @@
                         <label for="lname">Contact Number 2:</label>
                     </div>
                     <div class="col-75">
-                        <input type="number" id="lname" name="phone2" placeholder="Input contact number 2">
+                        <input type="number" id="phone2" name="phone2" placeholder="Input contact number 2">
                     </div>
                 </div>
                 <div class="row">
@@ -105,7 +113,7 @@
         </form>
     </div>
     </div>
-    <section class="footer1">
+    <section class="footer">
         <h1>©CEFG All rights reserved.</h1>
     </section>
 
