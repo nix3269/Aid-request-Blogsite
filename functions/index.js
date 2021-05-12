@@ -186,7 +186,7 @@ app.get('/postitem', async (request, response) => {
 
 app.post('/insert_data', async (request, response) => {
     var insert = await insertFormData(request);
-    response.render('postitem', {});
+    response.render('postitem', {done: "Post Successful!"});
 });
 
 app.get('/page', async (req, res) => {

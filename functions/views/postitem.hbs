@@ -8,18 +8,35 @@
     <script>
         $(document).ready(function () {
             $('#ide').val(sessionStorage.getItem("id"));
-            $('#link').attr('href',"/load?location="+sessionStorage.getItem("curr"))
+            $('#link').attr('href', "/load?location=" + sessionStorage.getItem("curr"))
         })
-        function verifyphone(){
-            if($("#phone2").val().length != 10){
-
+        function verifyphone() {
+            b=false
+            if ($("#phone2").val().length == 10) {
+                $("#ph2").css('display', 'none')
+                var c = true;
+            } else {
+                $("#ph2").css('display', 'inline')
+                var c = false;
             }
-            if($("#phone1").val().length != 10){
-                
+            if ($("#phone2").val() == "") {
+                if ($("#phone1").val().length == 10) {
+                    $("#ph1").css('display', 'none')
+                    var b = true;
+                } else {
+                    $("#ph1").css('display', 'inline')
+                    var b = false;
+                }
+            }
+            if (c || b) {
+                $("#gn1").css('display', 'block');
+            }else{
+                $("#gn1").css('display', 'none');
             }
         }
     </script>
 </head>
+
 <body>
     <nav>
         <div class="logo">CEFG</div>
@@ -73,17 +90,23 @@
                 <div class="row">
                     <div class="col-25">
                         <label for="lname">Contact Number 1:</label>
+                        <p id="ph1" style="margin-top:-18px; margin-bottom:0%; padding:0%;color: red; font-size: 10px;display:none">*Invalid Phone
+                            Number</p>
                     </div>
                     <div class="col-75">
-                        <input type="number" id="phone1" name="phone1" placeholder="Input contact number 1">
+                        <input oninput="verifyphone()" type="number" id="phone1" name="phone1"
+                            placeholder="Input contact number 1">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-25">
                         <label for="lname">Contact Number 2:</label>
+                        <p id="ph2" style="margin-top:-15px; color: red; font-size: 10px;display:none">*Invalid Phone
+                            Number</p>
                     </div>
                     <div class="col-75">
-                        <input type="number" id="phone2" name="phone2" placeholder="Input contact number 2">
+                        <input oninput="verifyphone()" type="number" id="phone2" name="phone2"
+                            placeholder="Input contact number 2">
                     </div>
                 </div>
                 <div class="row">
@@ -108,7 +131,7 @@
                     </div>
                 </div>
                 <div class="row1">
-                    <input type="submit" value="Submit" id="gn1">
+                    <input type="submit" style="display: none" value="Submit" id="gn1">
                 </div>
         </form>
     </div>
@@ -116,7 +139,11 @@
     <section class="footer">
         <h1>©CEFG All rights reserved.</h1>
     </section>
-
+    {{#if done}}
+    <script>
+        window.alert("{{done}}")
+    </script>
+    {{/if}}
 </body>
 
 </html>
