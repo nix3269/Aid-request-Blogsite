@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -9,29 +10,35 @@
         $(document).ready(function () {
             $('#ide').val(sessionStorage.getItem("id"));
             $('#link').attr('href', "/load?location=" + sessionStorage.getItem("curr"))
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+            setTimeout(function () {
+                popup.classList.toggle("hide");
+            }, 4000)
         })
+
         function verifyphone() {
-            b=false
-            if ($("#phone2").val().length == 10) {
-                $("#ph2").css('display', 'none')
+            b = false
+            if ($("#phone1").val().length == 10) {
+                $("#ph1").css('color', 'transparent')
                 var c = true;
             } else {
-                $("#ph2").css('display', 'inline')
+                $("#ph1").css('color', 'red')
                 var c = false;
             }
-            if ($("#phone2").val() == "") {
-                if ($("#phone1").val().length == 10) {
-                    $("#ph1").css('display', 'none')
+            if ($("#phone2").val() != "") {
+                if ($("#phone2").val().length == 10) {
+                    $("#ph2").css('color', 'transparent')
                     var b = true;
                 } else {
-                    $("#ph1").css('display', 'inline')
+                    $("#ph2").css('color', 'red')
                     var b = false;
                 }
             }
             if (c || b) {
-                $("#gn1").css('display', 'block');
-            }else{
-                $("#gn1").css('display', 'none');
+                $("#gn1").attr('type', 'submit');
+            } else {
+                $("#gn1").attr('type', 'button');
             }
         }
     </script>
@@ -90,7 +97,8 @@
                 <div class="row">
                     <div class="col-25">
                         <label for="lname">Contact Number 1:</label>
-                        <p id="ph1" style="margin-top:-18px; margin-bottom:0%; padding:0%;color: red; font-size: 10px;display:none">*Invalid Phone
+                        <p id="ph1" style="margin-top:-18px; color: transparent; font-size: 10px;display:inline">
+                            *Invalid Phone
                             Number</p>
                     </div>
                     <div class="col-75">
@@ -101,7 +109,8 @@
                 <div class="row">
                     <div class="col-25">
                         <label for="lname">Contact Number 2:</label>
-                        <p id="ph2" style="margin-top:-15px; color: red; font-size: 10px;display:none">*Invalid Phone
+                        <p id="ph2" style="margin-top:-15px; color: transparent; font-size: 10px;display:inline">
+                            *Invalid Phone
                             Number</p>
                     </div>
                     <div class="col-75">
@@ -131,7 +140,7 @@
                     </div>
                 </div>
                 <div class="row1">
-                    <input type="submit" style="display: none" value="Submit" id="gn1">
+                    <button type="button" class="button12" id="gn1">Submit</button>
                 </div>
         </form>
     </div>
@@ -140,9 +149,9 @@
         <h1>©CEFG All rights reserved.</h1>
     </section>
     {{#if done}}
-    <script>
-        window.alert("{{done}}")
-    </script>
+    <div class="popup">
+        <span class="popuptext" id="myPopup">{{done}}</span>
+    </div>
     {{/if}}
 </body>
 

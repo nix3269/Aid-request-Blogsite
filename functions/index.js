@@ -185,6 +185,9 @@ app.get('/postitem', async (request, response) => {
 });
 
 app.post('/insert_data', async (request, response) => {
+    if(!request.body.product || !request.body.name || !request.body.quantity || !request.body.location){
+        res.send({message: "Wrong Details given"})
+    }
     var insert = await insertFormData(request);
     response.render('postitem', {done: "Post Successful!"});
 });
