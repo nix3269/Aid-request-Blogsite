@@ -1,0 +1,16 @@
+.card1 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    display: flex;
+    border: 1px solid black;
+    text-align: center;
+    font-family: arial;
+    margin: 40px;
+    padding: 20px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card1 h3 {
+    color: rgb(112, 112, 112);
+}

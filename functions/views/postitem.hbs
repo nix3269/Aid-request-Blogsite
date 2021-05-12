@@ -10,11 +10,13 @@
         $(document).ready(function () {
             $('#ide').val(sessionStorage.getItem("id"));
             $('#link').attr('href', "/load?location=" + sessionStorage.getItem("curr"))
+            {{#if done}}
             var popup = document.getElementById("myPopup");
             popup.classList.toggle("show");
             setTimeout(function () {
                 popup.classList.toggle("hide");
             }, 4000)
+            {{/if}}
         })
 
         function verifyphone() {
@@ -54,7 +56,7 @@
         <ul>
             <li><a id="link" href="/load">Home</a></li>
             <li><a href="#" class="active">Post an Item</a></li>
-            <li><a href="#">Our Team</a></li>
+            <li><a href="/team.html">Our Team</a></li>
             <li><a href="/">Log Out</a></li>
         </ul>
     </nav>

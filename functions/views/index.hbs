@@ -6,23 +6,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="load.js"></script>
+    <script src="load1.js"></script>
     <script>
         x = 8
         function pageload() {
-            loadnewpage(x);
+            $("#loc").val(sessionStorage.getItem("curr"))
+            $("#page").val(x)
             x += 8
         }
         function setval(){
             sessionStorage.setItem('curr',$("#location1").val());
+            $("#loc").val($("#location1").val())
         }
         $(document).ready(function () {
             if (!sessionStorage.getItem("id")) {
-            x = '{{ id }}'
-            sessionStorage.setItem("id", x)
-            x = '{{ location }}'
-            sessionStorage.setItem("curr", x)
+            z = '{{ id }}'
+            sessionStorage.setItem("id", z)
+            z = '{{ location }}'
+            sessionStorage.setItem("curr", z)
             }
+            pageload()
         })
     </script>
 </head>
@@ -37,7 +40,7 @@
         <ul>
             <li><a class="active" href="#">Home</a></li>
             <li><a href="/postitem">Post an Item</a></li>
-            <li><a href="#">Our Team</a></li>
+            <li><a href="/team.html">Our Team</a></li>
             <li><a href="/">Log Out</a></li>
         </ul>
     </nav>
@@ -96,7 +99,11 @@
         
     </section>
 <section class="butyn">
-<button class="button12">Next</button>
+    <form action="/page" class="butyn" method="POST">
+        <input style="display: none" id="loc" name="location">
+        <input style="display: none" id="page" name="page">
+        <button class="button12">Next</button>
+    </form>
 </section>
     <section class="footer">
         <h1>©CEFG All rights reserved.</h1>

@@ -16,7 +16,7 @@ async function getFirestore(request, loc) {
         loc = "Canacona"
     }
     const posts = firestore_con.collection("posts");
-    const snapshot = await posts.limit(8).where('location', '==', loc).get();
+    const snapshot = await posts.limit(9).where('location', '==', loc).get();
     writeResult = []
     if (snapshot.empty) {
         console.log('No matching documents.');
@@ -32,7 +32,7 @@ async function filterLocation(request) {
     const firestore_con = await admin.firestore();
     const posts = firestore_con.collection("posts");
     if (request.body.product == "") {
-        const snapshot = await posts.limit(8).where('location', '==', request.body.location).get();
+        const snapshot = await posts.limit(9).where('location', '==', request.body.location).get();
         writeResult = []
         if (snapshot.empty) {
             console.log('No matching documents.');
@@ -43,7 +43,7 @@ async function filterLocation(request) {
         });
         return writeResult
     } else {
-        const snapshot = await posts.limit(8).where('location', '==', request.body.location).where('product', '==', request.body.product).get();
+        const snapshot = await posts.limit(9).where('location', '==', request.body.location).where('product', '==', request.body.product).get();
         writeResult = []
         if (snapshot.empty) {
             console.log('No matching documents.');
@@ -192,25 +192,27 @@ app.post('/insert_data', async (request, response) => {
     response.render('postitem', {done: "Post Successful!"});
 });
 
-app.get('/page', async (req, res) => {
-    var x = 1;
+app.post('/page', async (request, response) => {
+    x=1
     const firestore_con = await admin.firestore();
     const posts = firestore_con.collection("posts");
-    const snapshot = await posts.limit(parseInt(req.query.page) + 8).where('location', '==', req.query.location).get();
+    const snapshot = await posts.limit(parseInt(request.body.page) + 9).where('location', '==', request.body.location).get();
     writeResult = []
     if (snapshot.empty) {
         console.log('No matching documents.');
-        res.send({})
+        response.send({})
     } else {
         snapshot.forEach(doc => {
-            if (x > parseInt(req.query.page)) {
+            if (x > parseInt(request.body.page)) {
                 if (doc.exists) {
                     writeResult.push(doc.data())
                 }
             }
             x++;
         });
-        res.send(writeResult)
+        response.render('index', {
+            res: writeResult, page: "sss"
+        });
     }
 });
 
