@@ -1,0 +1,160 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#ide').val(sessionStorage.getItem("id"));
+            $('#link').attr('href', "/load?location=" + sessionStorage.getItem("curr"))
+            {{#if done}}
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+            setTimeout(function () {
+                popup.classList.toggle("hide");
+            }, 4000)
+            {{/if}}
+        })
+
+        function verifyphone() {
+            b = false
+            if ($("#phone1").val().length == 10) {
+                $("#ph1").css('color', 'transparent')
+                var c = true;
+            } else {
+                $("#ph1").css('color', 'red')
+                var c = false;
+            }
+            if ($("#phone2").val() != "") {
+                if ($("#phone2").val().length == 10) {
+                    $("#ph2").css('color', 'transparent')
+                    var b = true;
+                } else {
+                    $("#ph2").css('color', 'red')
+                    var b = false;
+                }
+            }
+            if (c || b) {
+                $("#gn1").attr('type', 'submit');
+            } else {
+                $("#gn1").attr('type', 'button');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">CEFG</div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            <li><a id="link" href="/load">Home</a></li>
+            <li><a href="#" class="active">Post an Item</a></li>
+            <li><a href="/team.html">Our Team</a></li>
+            <li><a href="/">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <form action="/insert_data" method="POST">
+            <input id="ide" style="display: none" name="id">
+            <div class="row">
+                <div class="col-25">
+                    <label for="name">Input Name:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="name" name="name" placeholder="input Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="item">Select item:</label>
+                </div>
+                <div class="col-75">
+                    <select id="item" name="product">
+                        <option value="Oxygen Cylinder">Oxygen Cylinder</option>
+                        <option value="Oximeter">Oximeter</option>
+                        <option value="Sanitizers">Sanitizers</option>
+                        <option value="Masks">Masks</option>
+                        <option value="Ambulance">Ambulance</option>
+                        <option value="Food Rations">Food</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="fname">Input Quantity:</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="fname" name="quantity" placeholder="input quantity">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Contact Number 1:</label>
+                        <p id="ph1" style="margin-top:-18px; color: transparent; font-size: 10px;display:inline">
+                            *Invalid Phone
+                            Number</p>
+                    </div>
+                    <div class="col-75">
+                        <input oninput="verifyphone()" type="number" id="phone1" name="phone1"
+                            placeholder="Input contact number 1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Contact Number 2:</label>
+                        <p id="ph2" style="margin-top:-15px; color: transparent; font-size: 10px;display:inline">
+                            *Invalid Phone
+                            Number</p>
+                    </div>
+                    <div class="col-75">
+                        <input oninput="verifyphone()" type="number" id="phone2" name="phone2"
+                            placeholder="Input contact number 2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="location">Availability Location:</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="location" name="location">
+                            <option value="">Select Location</option>
+                            <option value="Canacona">Canacona</option>
+                            <option value="Bardez">Bardez</option>
+                            <option value="Bicholim">Bicholim</option>
+                            <option value="Mormugao">Mormugao</option>
+                            <option value="Pernem">Pernem</option>
+                            <option value="Ponda">Ponda</option>
+                            <option value="Quepem">Quepem</option>
+                            <option value="Salcete">Salcete</option>
+                            <option value="Sanguem">Sanguem</option>
+                            <option value="Sateri">Sateri</option>
+                            <option value="Tiswadi">Tiswadi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row1">
+                    <button type="button" class="button12" id="gn1">Submit</button>
+                </div>
+        </form>
+    </div>
+    </div>
+    <section class="footer">
+        <h1>©CEFG All rights reserved.</h1>
+    </section>
+    {{#if done}}
+    <div class="popup">
+        <span class="popuptext" id="myPopup">{{done}}</span>
+    </div>
+    {{/if}}
+</body>
+
+</html>

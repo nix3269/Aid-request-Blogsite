@@ -1,18 +1,28 @@
 {
-  "name": "covid-forum",
-  "version": "1.0.0",
-  "description": "Apllication to share info in tims of COVID",
-  "main": "index.js",
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
   "scripts": {
-    "test": "npm test"
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
   },
-  "repository": {
-    "type": "git",
-    "url": "nnone"
+  "engines": {
+    "node": "12"
   },
-  "keywords": [
-    "none"
-  ],
-  "author": "Nix",
-  "license": "ISC"
+  "main": "index.js",
+  "dependencies": {
+    "consolidate": "^0.16.0",
+    "express": "^4.17.1",
+    "firebase": "^8.6.1",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0",
+    "handlebars": "^4.7.7",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
 }

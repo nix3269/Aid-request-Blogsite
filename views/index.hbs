@@ -1,0 +1,113 @@
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="load1.js"></script>
+    <script>
+        x = 8
+        function pageload() {
+            $("#loc").val(sessionStorage.getItem("curr"))
+            $("#page").val(x)
+            x += 8
+        }
+        function setval(){
+            sessionStorage.setItem('curr',$("#location1").val());
+            $("#loc").val($("#location1").val())
+        }
+        $(document).ready(function () {
+            if (!sessionStorage.getItem("id")) {
+            z = '{{ id }}'
+            sessionStorage.setItem("id", z)
+            z = '{{ location }}'
+            sessionStorage.setItem("curr", z)
+            }
+            pageload()
+        })
+    </script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">CEFG</div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            <li><a class="active" href="#">Home</a></li>
+            <li><a href="/postitem">Post an Item</a></li>
+            <li><a href="/team.html">Our Team</a></li>
+            <li><a href="/">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <h1>WELCOME TO COVID19 ESSENTIAL FORUM GOA</h1>
+        <h3>Your one stop to get all covid19 essentials</h3>
+    </section>
+
+    <section class="sort">
+        <form class="sort" action="/load" method="POST">
+        <div class="item-sort">
+            <select id="item1" name="product">
+                <option value="">Item:</option>
+                <option value="Oxygen Cylinder">Oxygen Cylinder</option>
+                <option value="Oximeter">Oximeter</option>
+                <option value="Sanitizers">Sanitizers</option>
+                <option value="Masks">Masks</option>
+                <option value="Ambulance">Ambulance</option>
+                <option value="Food Rations">Food</option>
+            </select>
+        </div>
+
+        <div class="location-sort">
+            <select id="location1" name="location" onchange="setval()">
+                <option value="Canacona">Canacona</option>
+                <option value="Bardez">Bardez</option>
+                <option value="Bicholim">Bicholim</option>
+                <option value="Mormugao">Mormugao</option>
+                <option value="Pernem">Pernem</option>
+                <option value="Ponda">Ponda</option>
+                <option value="Quepem">Quepem</option>
+                <option value="Salcete">Salcete</option>
+                <option value="Sanguem">Sanguem</option>
+                <option value="Sateri">Sateri</option>
+                <option value="Tiswadi">Tiswadi</option>
+            </select>
+        </div>
+
+        <button class="button">Search</button>
+        </form>
+    </section>
+
+    <section class="post" id="p">
+        {{#each res}}
+        <div class="card">
+            <h1>{{product}}</h1><br>
+            <h3>{{name}}</h3><br>
+            <p>Qty: {{quantity}}</p><br>
+            <p>Contact 1: {{phone1}}</p>
+            <p>Contect 2: {{phone2}}</P><br>
+            <p>Location: {{location}}<p><br>
+                    <p class="date">Date: {{date}}</p>
+        </div>
+        {{/each}}
+        
+    </section>
+<section class="butyn">
+    <form action="/page" class="butyn" method="POST">
+        <input style="display: none" id="loc" name="location">
+        <input style="display: none" id="page" name="page">
+        <button class="button12">Next</button>
+    </form>
+</section>
+    <section class="footer">
+        <h1>©CEFG All rights reserved.</h1>
+    </section>
+</body>
+
+</html>
